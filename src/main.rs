@@ -74,7 +74,7 @@ fn fibonacci() -> i32{
 
         if input.trim() == "quit" {break 0;}
 
-        let input: i32 = match input.trim().parse(){
+        let input: u32 = match input.trim().parse(){
             Ok(num) => num,
             Err(_) => break -1,
         };
@@ -83,10 +83,11 @@ fn fibonacci() -> i32{
     };
 }
 
-fn fib_rec(x:i32) -> i32{
-    if x == 1 {return 1;}
-    
-    if x == 2 {return 1;}
-
-    return fib_rec(x-1) + fib_rec(x-2);
+fn fib_rec(x:u32) -> u32{
+    match x {
+        0 => 0,
+        1 => 1,
+        2 => 1,
+        _ => fib_rec(x - 1) + fib_rec(x - 2),
+    }
 }
