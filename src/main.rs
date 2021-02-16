@@ -1,10 +1,11 @@
 use std::io;
 
-fn main(){
-   
-    print_func_list();
+pub mod utils;
 
-    loop{
+fn main() {
+    utils::print_func_list();
+
+    loop {
         println!("Please select a function[or exit to shut down]:");
 
         let mut func_id = String::new();
@@ -13,81 +14,21 @@ fn main(){
             .read_line(&mut func_id)
             .expect("Fail to read line.");
 
-        if func_id.trim() == "exit" {break;}
+        if func_id.trim() == "exit" {
+            break;
+        }
 
-        let func_id : i32 = match func_id.trim().parse(){
+        let func_id: i32 = match func_id.trim().parse() {
             Ok(num) => num,
             Err(_) => continue,
         };
 
-        match func_id{
-            0 => print_func_list(),
-            1 => println!("Return value:{}", c2f()),
-            2 => println!("Return value:{}", fibonacci()),
+        match func_id {
+            0 => utils::print_func_list(),
+            1 => println!("Return value:{}", utils::c2f()),
+            2 => println!("Return value:{}", utils::fibonacci()),
+            3 => println!("Return value:{}", utils::bubble_sort()),
             _ => continue,
         }
-    }
-}
-
-fn print_func_list(){
-    let funcs = ["print this list", "c2f", "fibonacci"];
-
-    let mut index = 0;
-    for each in funcs.iter(){
-        println!("{}:{}", index, each);
-        index += 1;
-    }
-}
-
-fn c2f() -> i32 {
-    return loop{
-        println!("Please input a celsius temperature[or quit to shut down]:");
-
-        let mut input = String::new();
-
-        io::stdin()
-            .read_line(&mut input)
-            .expect("Fail to read line.");
-
-        if input.trim() == "quit" {break 0;}
-
-        let input : f64 = match input.trim().parse() {
-            Ok(float) => float,
-            Err(_) => break -1,
-        };
-
-        let output : f64 = 9.0/5.0 * input + 32.0;
-
-        println!("Celsius:{}\tFahrenheit:{}", input, output);
-    };
-}
-
-fn fibonacci() -> i32{
-    return loop{
-        println!("Please enter the value for n[or quit to shut down]:");
-
-        let mut input = String::new();
-
-        io::stdin()
-            .read_line(&mut input)
-            .expect("Fail to read line.");
-
-        if input.trim() == "quit" {break 0;}
-
-        let input: u32 = match input.trim().parse(){
-            Ok(num) => num,
-            Err(_) => break -1,
-        };
-
-        println!("the {}th Fibonacci number is:{}", input, fib_rec(input));
-    };
-}
-
-fn fib_rec(x:u32) -> u32{
-    match x {
-        0 => 0,
-        1 => 1,
-        2 => 1,
-        _ => fib_rec(x - 1) + fib_rec(x - 2),
     }
 }
