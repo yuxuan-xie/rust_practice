@@ -124,7 +124,7 @@ pub fn iter_quick_sort(v: &mut Vec<i32>, left: usize, right: usize) {
 
     *&mut v[i] = key;
     if i > 1 {
-        // Since the i and j is defined as usize, pay attention to the case in which i - 1 might causes Overflow.
+        // Since i and j are defined as usize, pay attention to the case in which i - 1 might causes overflow.
         iter_quick_sort(v, left, i - 1);
     }
     iter_quick_sort(v, i + 1, right);
