@@ -28,6 +28,7 @@ fn main() {
             1 => println!("Return value:{}", utils::c2f()),
             2 => println!("Return value:{}", utils::fibonacci()),
             3 => println!("Return value:{}", utils::bubble_sort()),
+            4 => println!("Return value:{}", utils::quick_sort()),
             _ => continue,
         }
     }
