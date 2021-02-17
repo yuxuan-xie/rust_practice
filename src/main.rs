@@ -29,6 +29,8 @@ fn main() {
             2 => println!("Return value:{}", utils::fibonacci()),
             3 => println!("Return value:{}", utils::bubble_sort()),
             4 => println!("Return value:{}", utils::quick_sort()),
+            5 => println!("Return value:{}", utils::quick_sort_slice()),
+            6 => println!("Return value:{}", utils::pig_latin()),
             _ => continue,
         }
     }

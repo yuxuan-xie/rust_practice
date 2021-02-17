@@ -7,6 +7,8 @@ pub fn print_func_list() {
         "fibonacci",
         "bubble sort",
         "quick sort",
+        "quick sort slice",
+        "pig latin",
     ];
 
     for (index, each) in funcs.iter().enumerate() {
@@ -128,4 +130,88 @@ pub fn iter_quick_sort(v: &mut Vec<i32>, left: usize, right: usize) {
         iter_quick_sort(v, left, i - 1);
     }
     iter_quick_sort(v, i + 1, right);
+}
+
+pub fn quick_sort_slice() -> i32 {
+    let mut v = vec![32, 43, 54, 22, 32, 10, 1, 99, 33, 0];
+    println!("Raw array: {:?}", v);
+
+    iter_quick_sort_slice(&mut v[..]);
+
+    println!("Sorted: {:?}", v);
+    0
+}
+
+pub fn iter_quick_sort_slice(v: &mut [i32]) {
+    if v.len() == 0 {
+        return;
+    }
+
+    let mut i: usize = 0;
+    let mut j: usize = v.len() - 1;
+    let key: i32 = match v.get(i) {
+        Some(num) => *num,
+        None => return,
+    };
+
+    while i < j {
+        while i < j && key <= v[j] {
+            j -= 1;
+        }
+        *&mut v[i] = v[j];
+        // println!("{:?}", v);
+
+        while i < j && key >= v[i] {
+            i += 1;
+        }
+        *&mut v[j] = v[i];
+        // println!("{:?}", v);
+    }
+    *&mut v[i] = key;
+    println!("{:?}", v);
+
+    if i >= 1 {
+        iter_quick_sort_slice(&mut v[..i - 1]);
+    }
+    iter_quick_sort_slice(&mut v[i + 1..]);
+}
+
+pub fn pig_latin() -> i32 {
+    let vowel = vec!['a', 'e', 'i', 'o', 'u'];
+
+    let mut input = vec![
+        "apple".to_string(),
+        "first".to_string(),
+        "second".to_string(),
+        "perfunctory".to_string(),
+        "heterogenuous".to_string(),
+        "ubiquitous".to_string(),
+        "egregious".to_string(),
+        "ostentatious".to_string(),
+        "panacea".to_string(),
+        "trepidation".to_string(),
+    ];
+
+    println!("Raw: {:?}", input);
+
+    for word in &mut input {
+        let first_char: char = match word.chars().next() {
+            Some(ch) => ch,
+            None => return -1,
+        };
+
+        if vowel.contains(&first_char){
+            word.push_str("-hay");
+            continue;
+        }
+
+        word.push('-');
+        word.push(first_char);
+        word.push_str("ay");
+
+        word.remove(0);
+    }
+
+    println!("Raw: {:?}", input);
+    0
 }
