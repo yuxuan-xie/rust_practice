@@ -1,4 +1,4 @@
-use std::{io, vec};
+use std::{io};
 
 pub fn print_func_list() {
     let funcs = [
@@ -9,6 +9,7 @@ pub fn print_func_list() {
         "quick sort",
         "quick sort slice",
         "pig latin",
+        "department interface"
     ];
 
     for (index, each) in funcs.iter().enumerate() {
@@ -101,7 +102,7 @@ pub fn quick_sort() -> i32 {
     0
 }
 
-pub fn iter_quick_sort(v: &mut Vec<i32>, left: usize, right: usize) {
+fn iter_quick_sort(v: &mut Vec<i32>, left: usize, right: usize) {
     if left >= right {
         return;
     }
@@ -142,7 +143,7 @@ pub fn quick_sort_slice() -> i32 {
     0
 }
 
-pub fn iter_quick_sort_slice(v: &mut [i32]) {
+fn iter_quick_sort_slice(v: &mut [i32]) {
     if v.len() == 0 {
         return;
     }
@@ -212,6 +213,8 @@ pub fn pig_latin() -> i32 {
         word.remove(0);
     }
 
-    println!("Raw: {:?}", input);
+    println!("Result: {:?}", input);
     0
 }
+
+pub mod department_interface;

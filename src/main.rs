@@ -31,6 +31,7 @@ fn main() {
             4 => println!("Return value:{}", utils::quick_sort()),
             5 => println!("Return value:{}", utils::quick_sort_slice()),
             6 => println!("Return value:{}", utils::pig_latin()),
+            7 => println!("Return value:{}", utils::department_interface::front()),
             _ => continue,
         }
     }
