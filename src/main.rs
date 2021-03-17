@@ -1,5 +1,6 @@
 use std::io;
 
+
 pub mod utils;
 
 fn main() {
@@ -32,6 +33,12 @@ fn main() {
             5 => println!("Return value:{}", utils::quick_sort_slice()),
             6 => println!("Return value:{}", utils::pig_latin()),
             7 => println!("Return value:{}", utils::department_interface::front()),
+            8 => println!("Return value:{}", utils::enter_merge()),
+            9 => println!("Return value:{}", utils::insertion_sort()),
+            10 => println!("Return value:{}", utils::maximum_subarray()),
+            11 => println!("Return value:{}", utils::maximum_subarray_brute_force()),
+            12 => println!("Return value:{}", utils::find_i()),
+            13 => println!("Return value:{}", utils::heap_sort()),
             _ => continue,
         }
     }
